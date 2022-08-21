@@ -16,8 +16,11 @@ public class ParkingService {
 
     static {
         var id = getUUID();
+        var id1 = getUUID();
         Parking parking = new Parking(id, "DMS-1234", "SC", "CELTA", "BRANCO");
+        Parking parking1 = new Parking(id1, "ABC-4547", "SC", "SAVEIRO", "PRATA");
         parkingMap.put(id, parking);
+        parkingMap.put(id1, parking1);
 
     }
 
@@ -27,5 +30,9 @@ public class ParkingService {
 
     private static String getUUID() {
         return UUID.randomUUID().toString().replace("-","");
+    }
+
+    public Parking findById(String id){
+        return parkingMap.get(id);
     }
 }
