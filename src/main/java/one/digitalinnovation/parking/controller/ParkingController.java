@@ -45,6 +45,14 @@ public class ParkingController {
 
     }
 
+    @DeleteMapping ("/{id}")
+    @ApiOperation("Delete Parking")
+    public ResponseEntity<ParkingDTO> delete(@PathVariable String id){
+        parkingService.delete(id);
+        return ResponseEntity.noContent().build();
+
+    }
+
     @PostMapping
     @ApiOperation("Create Parking")
     public ResponseEntity<ParkingDTO> create(@RequestBody ParkingCreateDTO dto){
@@ -53,6 +61,16 @@ public class ParkingController {
         var parking = parkingService.create(parkingCreate);
         var result = parkingMapper.toParkingDTO(parking);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
+
+    }
+
+    @PutMapping ("/{id}")
+    @ApiOperation("Update Parking")
+    public ResponseEntity<ParkingDTO> update(@PathVariable String id, @RequestBody ParkingCreateDTO parkingCreateDTO){
+        // Esta usando o mesmo DTO, pode se criar outro para limitar os campos do update
+        var parkingUpdate = parkingMapper.toParkingCreate(parkingCreateDTO);
+        var parking = parkingService.update(id, parkingUpdate);
+        return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
 
     }
 }
