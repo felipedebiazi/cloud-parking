@@ -29,33 +29,33 @@ public class ParkingController {
 
     @GetMapping
     @ApiOperation("Find all Parkings")
-    public ResponseEntity<List<ParkingDTO>> findAll(){
+    public ResponseEntity<List<ParkingDTO>> findAll() {
         List<Parking> parkingList = parkingService.findAll();
         List<ParkingDTO> result = parkingMapper.toParkingDTOList(parkingList);
         return ResponseEntity.ok(result);
 
     }
 
-    @GetMapping ("/{id}")
+    @GetMapping("/{id}")
     @ApiOperation("Find Parking by Id")
-    public ResponseEntity<ParkingDTO> findById(@PathVariable String id){
+    public ResponseEntity<ParkingDTO> findById(@PathVariable String id) {
         Parking parking = parkingService.findById(id);
         ParkingDTO result = parkingMapper.toParkingDTO(parking);
         return ResponseEntity.ok(result);
 
     }
 
-    @DeleteMapping ("/{id}")
+    @DeleteMapping("/{id}")
     @ApiOperation("Delete Parking")
-    public ResponseEntity<ParkingDTO> delete(@PathVariable String id){
+    public ResponseEntity<ParkingDTO> delete(@PathVariable String id) {
         parkingService.delete(id);
         return ResponseEntity.noContent().build();
 
     }
 
-    @PostMapping ("/{id}")
+    @PostMapping("/{id}")
     @ApiOperation("Exit Parking")
-    public ResponseEntity<ParkingDTO> exit(@PathVariable String id){
+    public ResponseEntity<ParkingDTO> exit(@PathVariable String id) {
         Parking parking = parkingService.exit(id);
         return ResponseEntity.ok(parkingMapper.toParkingDTO(parking));
 
@@ -63,7 +63,7 @@ public class ParkingController {
 
     @PostMapping
     @ApiOperation("Create Parking")
-    public ResponseEntity<ParkingDTO> create(@RequestBody ParkingCreateDTO dto){
+    public ResponseEntity<ParkingDTO> create(@RequestBody ParkingCreateDTO dto) {
         // Utilizando 'var' só como exemplo, para mostrar que é ´possivel
         var parkingCreate = parkingMapper.toParkingCreate(dto);
         var parking = parkingService.create(parkingCreate);
@@ -72,9 +72,9 @@ public class ParkingController {
 
     }
 
-    @PutMapping ("/{id}")
+    @PutMapping("/{id}")
     @ApiOperation("Update Parking")
-    public ResponseEntity<ParkingDTO> update(@PathVariable String id, @RequestBody ParkingCreateDTO parkingCreateDTO){
+    public ResponseEntity<ParkingDTO> update(@PathVariable String id, @RequestBody ParkingCreateDTO parkingCreateDTO) {
         // Esta usando o mesmo DTO, pode se criar outro para limitar os campos do update
         var parkingUpdate = parkingMapper.toParkingCreate(parkingCreateDTO);
         var parking = parkingService.update(id, parkingUpdate);

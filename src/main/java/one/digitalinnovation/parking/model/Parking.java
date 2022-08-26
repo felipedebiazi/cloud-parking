@@ -1,9 +1,17 @@
 package one.digitalinnovation.parking.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
 
+
+@Entity
 public class Parking {
 
+    @Id
     private String id;
     private String license;
     private String state;

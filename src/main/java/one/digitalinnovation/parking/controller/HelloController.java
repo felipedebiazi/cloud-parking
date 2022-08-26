@@ -11,7 +11,7 @@ import springfox.documentation.annotations.ApiIgnore;
 public class HelloController {
 
     @GetMapping
-    public String hello(){
+    public String hello() {
         return "Hello DIO. Java Devs";
     }
 }

@@ -16,17 +16,17 @@ public class ParkingService {
 
     private static Map<String, Parking> parkingMap = new HashMap();
 
-    public List<Parking> findAll(){
+    public List<Parking> findAll() {
         return parkingMap.values().stream().collect(Collectors.toList());
     }
 
     private static String getUUID() {
-        return UUID.randomUUID().toString().replace("-","");
+        return UUID.randomUUID().toString().replace("-", "");
     }
 
-    public Parking findById(String id){
+    public Parking findById(String id) {
         Parking parking = parkingMap.get(id);
-        if(parking == null){
+        if (parking == null) {
             throw new ParkingNotFoundException(id);
         }
         return parking;
